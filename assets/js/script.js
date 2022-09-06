@@ -15,7 +15,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+/**
+ * The main loop function of the game generates
+ * 2 random numbers
+ */
+
 function runGame() {
+    //Create 2 random numbers
+    let num1 = Math.floor(Math.random() * 25) + 1;
+    let num2 = Math.floor(Math.random() * 25) + 1;
 
 }
 
