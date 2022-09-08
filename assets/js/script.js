@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
+                console.log(`${gameType} selected`);
                 runGame(gameType);
             }
         })
@@ -19,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /**
  * The main loop function of the game generates
- * 2 random numbers
+ * 2 random numbers and displays question deppending
+ * on game type selected by button click
  */
 function runGame(gameType) {
     //Create 2 random numbers
@@ -28,6 +30,8 @@ function runGame(gameType) {
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
     } else {
         alert(`Unknow game type: ${gameType}`);
         throw `Unknow game type: ${gameType}. Aborting!`;
@@ -63,10 +67,12 @@ function checkAnswer() {
 function calculateCorrectAnswer() {
     let operand1 = parseInt(document.getElementById("operand1").innerText);
     let operand2 = parseInt(document.getElementById("operand2").innerText);
-    let operand = (document.getElementById("operator").innerText);
+    let operator = (document.getElementById("operator").innerText);
 
-    if (operand === "+") {
+    if (operator === "+") {
         return [operand1 + operand2, "addition"];
+    } else if (operator === "x") {
+        return [operand1 * operand2, "multiply"]
     } else {
         alert (`Unimplemented operator ${operand}.`);
         throw `Unimplemented operator ${operand}. Aborting!`;
@@ -103,6 +109,8 @@ function displaySubtractQuestion() {
 
 }
 
-function displayMultiplyQuestion() {
-    
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent= "x";
 }
